@@ -77,6 +77,11 @@ public class MantenimientoAsignacionA extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
 
         jButton2.setText("Buscar");
@@ -153,6 +158,22 @@ public class MantenimientoAsignacionA extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       try {
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("delete from asignacioncursosalumnos where carnet_alumno  = ?");
+            
+            pst.setString(1,  jTextField9.getText().trim());
+            pst.executeUpdate();
+            
+           
+            
+            jTextField7.setText("Registro eliminado.");
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
