@@ -5,15 +5,16 @@
  */
 package Paquete;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author hp
  */
 public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form MantenimientoAlumnos
-     */
     public MantenimientoAlumnos() {
         initComponents();
     }
@@ -77,9 +78,19 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
 
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, -1, -1));
 
         jButton3.setText("Modificar");
@@ -91,6 +102,11 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, -1, -1));
 
         jButton4.setText("Ingresar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 290, -1));
 
@@ -100,6 +116,53 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+     try{
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("insert into alumnos values(?,?,?,?,?,?)");
+            
+            pst.setString(1, jTextField3.getText().trim());
+            pst.setString(2, jTextField2.getText().trim());
+            pst.setString(3, jTextField1.getText().trim());
+             pst.setString(4, jTextField4.getText().trim());
+            pst.setString(5, jTextField5.getText().trim());
+            pst.setString(6, jTextField6.getText().trim());
+            
+            pst.executeUpdate();
+            
+           jTextField3.setText("");
+            jTextField2.setText("");
+            jTextField1.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("Registro exitoso.");
+        }catch (Exception e){
+             e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//Codigo que permite borrar registros en la base de datos
+        try {
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("delete from alumnos where carnet_alumno = ?");
+            
+            pst.setString(1,  jTextField3.getText().trim());
+            pst.executeUpdate();
+            
+           ;
+            
+            jTextField7.setText("Registro eliminado.");
+            
+        } catch (Exception e) {
+        }      
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

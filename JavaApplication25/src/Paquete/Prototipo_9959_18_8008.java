@@ -23,7 +23,9 @@ public class Prototipo_9959_18_8008 extends javax.swing.JFrame {
  private MantenimientoAsignacionA ventana9;
  private MantenimientoAsignacionM ventana10;
   private MantenimientoJornadas ventana11;
- 
+  public static String Base_de_Datos = "jdbc:mysql://127.0.0.1:3306/siu";
+    public static String Usuario = "root";
+  public static   String Clave = "";
 
     /**
      * Creates new form Prototipo
@@ -42,6 +44,7 @@ public class Prototipo_9959_18_8008 extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -63,16 +66,10 @@ public class Prototipo_9959_18_8008 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
-        );
+        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Jose Pablo Hernandez Pichola - 9959-18 -8008");
+        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jMenu1.setText("Abrir");
         jMenuBar1.add(jMenu1);
@@ -309,6 +306,7 @@ public class Prototipo_9959_18_8008 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

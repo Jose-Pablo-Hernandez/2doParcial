@@ -5,6 +5,10 @@
  */
 package Paquete;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author hp
@@ -65,6 +69,11 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
 
         jButton2.setText("Buscar");
@@ -79,6 +88,11 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, -1, -1));
 
         jButton4.setText("Ingresar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 290, -1));
 
@@ -88,6 +102,45 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+      try{
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("insert into Carreras values(?,?,?,?)");
+            
+            pst.setString(1, jTextField2.getText().trim());
+            pst.setString(2, jTextField2.getText().trim());
+            pst.setString(3, jTextField1.getText().trim());
+             pst.setString(4, jTextField6.getText().trim());
+            
+            
+            pst.executeUpdate();
+            
+           jTextField3.setText("");
+            jTextField2.setText("");
+            jTextField1.setText("");
+          jTextField6.setText("");
+            jTextField7.setText("Registro exitoso.");
+        }catch (Exception e){
+             e.printStackTrace();
+        } 
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("delete from carreras where codigo_carrera = ?");
+            
+            pst.setString(1,  jTextField3.getText().trim());
+            pst.executeUpdate();
+            
+           ;
+            
+            jTextField7.setText("Registro eliminado.");
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

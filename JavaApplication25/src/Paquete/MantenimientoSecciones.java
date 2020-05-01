@@ -5,6 +5,10 @@
  */
 package Paquete;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author hp
@@ -53,6 +57,11 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
         });
 
         jButton4.setText("Ingresar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Codigo");
 
@@ -61,6 +70,11 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
         jLabel4.setText("Estatus");
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Buscar");
 
@@ -141,6 +155,44 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       try{
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("insert into secciones values(?,?,?)");
+            
+            pst.setString(1, jTextField3.getText().trim());
+            pst.setString(2, jTextField2.getText().trim());
+            pst.setString(3, jTextField1.getText().trim());
+            
+            
+            pst.executeUpdate();
+            
+           jTextField3.setText("");
+            jTextField2.setText("");
+            jTextField1.setText("");
+          
+            jTextField7.setText("Registro exitoso.");
+        }catch (Exception e){
+             e.printStackTrace();
+        }   
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       try {
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("delete from secciones where codigo_seccion = ?");
+            
+            pst.setString(1,  jTextField3.getText().trim());
+            pst.executeUpdate();
+            
+           ;
+            
+            jTextField7.setText("Registro eliminado.");
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

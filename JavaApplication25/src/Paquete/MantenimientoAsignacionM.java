@@ -5,6 +5,10 @@
  */
 package Paquete;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author hp
@@ -73,6 +77,11 @@ public class MantenimientoAsignacionM extends javax.swing.JInternalFrame {
         });
 
         jButton7.setText("Ingresar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Codigo Curso");
 
@@ -194,11 +203,42 @@ public class MantenimientoAsignacionM extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       try {
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario, Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("insert into asignacioncursosmastros values(?,?,?,?,?,?,?)");
+
+            pst.setString(1, jTextField3.getText().trim());
+            pst.setString(2, jTextField2.getText().trim());
+            pst.setString(3, jTextField1.getText().trim());
+            pst.setString(4, jTextField6.getText().trim());
+            pst.setString(5, jTextField4.getText().trim());
+            pst.setString(6, jTextField8.getText().trim());
+            pst.setString(7, jTextField9.getText().trim());
+          
+
+            pst.executeUpdate();
+
+            jTextField3.setText("");
+            jTextField2.setText("");
+            jTextField1.setText("");
+            jTextField4.setText("");
+            jTextField6.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+          
+            
+
+            jTextField7.setText("Registro exitoso.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;

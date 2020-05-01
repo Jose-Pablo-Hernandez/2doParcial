@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 package Paquete;
-
+import java.sql.*;
 /**
  *
  * @author hp
  */
 public class MantenimientoMaestros extends javax.swing.JInternalFrame {
-
+ String Base_de_Datos = "jdbc:mysql://127.0.0.1:3306/siu";
+    String Usuario = "root";
+    String Clave = "";
     /**
      * Creates new form MantenimientoMaestros
      */
@@ -64,6 +66,11 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         jLabel6.setText("Email");
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Buscar");
 
@@ -75,6 +82,11 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         });
 
         jButton4.setText("Ingresar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,6 +195,48 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try{
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("insert into maestros values(?,?,?,?,?,?)");
+            
+            pst.setString(1, jTextField3.getText().trim());
+            pst.setString(2, jTextField2.getText().trim());
+            pst.setString(3, jTextField1.getText().trim());
+             pst.setString(4, jTextField4.getText().trim());
+            pst.setString(5, jTextField5.getText().trim());
+            pst.setString(6, jTextField6.getText().trim());
+            
+            pst.executeUpdate();
+            
+           jTextField3.setText("");
+            jTextField2.setText("");
+            jTextField1.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("Registro exitoso.");
+        }catch (Exception e){
+             e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try {
+            Connection cn = DriverManager.getConnection(Prototipo_9959_18_8008.Base_de_Datos, Prototipo_9959_18_8008.Usuario,Prototipo_9959_18_8008.Clave);
+            PreparedStatement pst = cn.prepareStatement("delete from maestros where codigo_maestro = ?");
+            
+            pst.setString(1,  jTextField3.getText().trim());
+            pst.executeUpdate();
+            
+           ;
+            
+            jTextField7.setText("Registro eliminado.");
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
